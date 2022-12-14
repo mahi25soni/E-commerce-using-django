@@ -1,0 +1,29 @@
+{% extends "customer/profilebase.html" %}
+{% load static %}
+{% block basecontent %}
+
+
+
+<div class="col-10  p-5">
+    <div class="alert alert-dark">
+    <h5>Name - {{user.username}} </h5>
+    <h5>Email - {{user.email}} </h5>
+    <button class="btn btn-primary mt-4">Change Password</button><br><br><br>
+    </div>
+    <h3>Your addresses:</h3>
+    <div class="container mt-3 alert alert-dark " style="display: flex; flex-wrap: wrap;"> 
+        {% for address in addresses %}
+        <div style="margin-right: 100px;">
+            <h5 >{{address.address}}</h5>
+            <h5 >{{address.city}}</h5>
+            <h5 >{{address.state}}</h5>
+            <h5 >{{address.zipcode}}</h5>
+            <h5 >{{address.country}}</h5>
+        </div>  
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
+

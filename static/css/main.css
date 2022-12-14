@@ -1,0 +1,91 @@
+
+#cart-icon{
+	width:25px;
+	display: inline;
+	margin-left: 15px;
+}
+
+#cart-total{
+	display: inline-block;
+	text-align: center;
+	color:#fff;
+	background-color: red;
+	width: 20px;
+	height: 25px;
+	border-radius: 50%;
+	font-size: 14px;
+}
+
+
+
+/* ------------------For Home Page -------------------------------------- */
+.bg-new{
+    background-color: rgb(83, 83, 83);
+    font-weight: 600;
+    font-size: large;
+}
+.box {
+    color: white;
+    text-shadow: 3px 3px 2px rgb(121, 120, 120), 2px 2px 15px rgb(104, 99, 99);
+    color: rgb(25, 24, 24);
+    height: 320px;
+    width: 280px;
+    margin: 30px 45px;
+}
+.box img{
+    height: 70%;
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+    padding: 10px;
+
+}
+.box h3{
+    margin-top: 10px;
+}
+.bottom{
+    display: flex;
+    position: relative;
+    align-items:center;
+}
+.price{
+    position:absolute;
+    right: 10px;
+}
+
+/* ------------------------------------------------------------------------- */
+
+.contain{
+    box-shadow: 3px 3px 2px rgb(121, 120, 120), 2px 2px 15px rgb(104, 99, 99);
+    border: 5px solid black;
+    border-radius: 10px;
+    width: 60%;
+    margin: 0 auto;
+    font-weight: 600;
+    font-size: large;
+}
+.thumbnail{
+    height: 65px;
+    width: 100px;
+    border-radius: 10px;
+}
+.cart-row{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+}
+.quantity{
+    display: inline-block;
+}
+.chg-quantity{
+    display: block;
+    width: 12px;
+    cursor: pointer;
+}
+
+.hidden{
+    display: none;
+}
+   
+
+

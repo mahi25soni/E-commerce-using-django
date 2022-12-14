@@ -1,0 +1,22 @@
+{% extends "customer/profilebase.html" %}
+{% load static %}
+{% block basecontent %}
+
+<div class="col-10  p-5">
+    <h3>List of products you have ordered: </h3>
+    <div style="display: flex; flex-wrap: wrap;" class="alert alert-dark"> 
+        {% for data in form %}
+        <div class="card border border-5 border-dark m-3" style="width: 13rem;">
+            <img class="card-img-top" src="{{data.product.image.url}}" alt="Card image cap" style="height: 150px;">
+            <div class="card-body text-center mt-2">
+              <h5 class="card-title">
+                {{data.no_of_items}} {{data.product.name}}</h5>
+              <span class="card-title">{{data.created_date}}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+

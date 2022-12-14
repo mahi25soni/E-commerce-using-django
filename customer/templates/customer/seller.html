@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        margin-top: 90px;
+        border: 8px solid rgb(0, 0, 0);
+        display: flex;
+
+    }
+
+    .container img {
+        margin: 20px;
+        border: 5px solid black;
+        width: 100%;
+    }
+
+    .details {
+        margin: 20px;
+        width: 100%;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-new">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">E-Com</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                    </li>
+                </ul>
+                <div class="form-inline-block my-2 my-lg-0">
+                    <a href="{% url 'login' %}" class="btn btn-warning" id="user-name">{{request.user}}</a>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="container">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="details ms-5">
+                <h5>{{form.name.label_tag}} {{form.name}}</h5>
+                <h5>{{form.price.label_tag}} {{form.price}}</h5>
+                <h5>{{form.discrip}}</h5>
+                <h6> {{form.image.label_tag}}{{form.image}} </h6>
+                <input type="submit" value="Add Product" class="btn btn-primary">
+            </div>
+        </form>
+
+
+    </div>
+
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+
+</body>
+
+</html>

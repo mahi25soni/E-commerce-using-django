@@ -1,0 +1,21 @@
+{% extends "customer/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="contain p-2 mt-5" style="width: 25%; font-size: 15px;">
+  <form action="" method="POST" >
+    <h3 class="text-center alert alert-primary">SignUp</h3>
+    {% csrf_token %}
+    {% for x in form %}
+    <strong>{{x.label}}</strong><br>  {{x}}<br>
+    {% endfor %}
+    {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+      {{ error }}
+    {% endfor %}
+    {% endif %}
+    <h3 class="text-center"><input type="submit" value="SignUp" class="btn btn-outline-primary"></h3>
+  </form>
+</div>
+
+{% endblock %}

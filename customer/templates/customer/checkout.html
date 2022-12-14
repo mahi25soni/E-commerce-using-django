@@ -1,0 +1,157 @@
+{% extends "customer/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5" style="padding: 15px;">
+    <div class="row">
+        <div class="col-6 contain " style="padding: 15px;">
+            <form id="form">
+              
+
+                <div id="shipping-info" class="row">
+                    <p></p>
+                    <p>Shipping Information:</p>
+                    <br>
+                    <div class="col-6 mt-2">
+                        <input type="text" class="form-control" name="address" placeholder="Address">
+                    </div>
+                    <div class="col-6 mt-2">
+                        <input type="text" class="form-control" name="state" placeholder="State">
+                    </div>
+                    <div class="col-6 mt-2">
+                        <input type="text" class="form-control" name="city" placeholder="City">
+                    </div>
+                    <div class="col-6 mt-2">
+                        <input type="text" class="form-control" name="zipcode" placeholder="ZipCode">
+                    </div>
+                    <div class="col-6 mt-2">
+                        <input type="text" class="form-control" name="country" placeholder="Country">
+                    </div>
+                </div>
+                <hr>
+                <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
+            </form>
+            <br>
+            <div class="box-element hidden mb-3" id="payment-info">
+                <button class="btn btn-secondary">Paypal Options</button>
+            </div>
+            <div id="paypal-button-container" class="hidden"></div>
+        </div>
+        <div class="col-6 contain " style="padding: 15px;">
+            <div class="box-element">
+                <a class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+                <hr>
+                <h4>Order Summary</h4>
+                <hr>
+                {% for object in cart %}
+                <div class="cart-row">
+                    <div style="flex:2"><img class="thumbnail" src="{{object.product.image.url}}"></div>
+                    <div style="flex:2">
+                        <p>{{object.product.name}}</p>
+                    </div>
+                    <div style="flex:1">
+                        <p>{{object.product.price}}</p>
+                    </div>
+                    <div style="flex:1">
+                        <p>x{{object.no_of_items}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <h5>Items: {{data.total_items}}</h5>
+                <h5>Total: {{data.net_total}}</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://www.paypal.com/sdk/js?client-id=AYaJugEIecCqvYqNbl4ZypmO8vevV96BzmnwOO80HbiIuPXdb3HqXj3fShJvaTLDJtB5ndcqb9SBdr9B&currency=USD"></script>
+
+<script>
+    // Render the PayPal button into #paypal-button-container
+    paypal.Buttons({
+
+        // Set up the transaction
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: "{{data.net_total}}"
+                    }
+                }]
+            });
+        },
+
+        // Finalize the transaction
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(orderData) {
+                // Successful capture! For demo purposes:
+                alert('Transaction completed !')
+                sendshipping()
+
+            });
+        }
+
+
+    }).render('#paypal-button-container');
+</script>
+<script>
+
+    var ShipInfo = {
+        'address': null,
+        'state': null,
+        'city': null,
+        'zipcode': null,
+        'country': null,
+    }
+
+  
+
+
+    form = document.getElementById('form')
+    paymentinfo = document.getElementById('payment-info')
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+        
+        paymentinfo.classList.remove('hidden')
+
+        ShipInfo.address = form.address.value,
+        ShipInfo.state= form.state.value,
+        ShipInfo.city = form.city.value,
+        ShipInfo.zipcode =form.zipcode.value,
+        ShipInfo.country= form.country.value
+    })
+
+    paymentinfo.addEventListener('click',()=>{
+        document.getElementById('paypal-button-container').classList.remove('hidden')
+
+    })
+    
+    function sendshipping(){
+
+        fetch(
+            url = '/process_order/',{
+                method : 'POST',
+                headers :{
+                    'Content-Type' : 'application/json',
+                    'X-CSRFToken': csrftoken,    
+                },
+                body : JSON.stringify({'shipping-info':ShipInfo})
+            }
+        )
+        .then(res => {
+            res.json
+
+        })
+        .then(res => {
+
+            console.log(res)
+            window.location.href = '/'
+
+        })
+        .catch(err => console.log(err))
+
+    }
+</script>
+
+{% endblock %}

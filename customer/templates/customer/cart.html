@@ -1,0 +1,49 @@
+{% extends "customer/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="contain p-3 mt-5">
+    <a href="{% url 'home' %}"><button class="btn btn-outline-dark"><strong>&#x2190; Back to Shopping </strong> </button></a>
+    <a href="{% url 'checkout' %}"><button class="btn btn-outline-dark" style="display: inline-block; float: right;"><strong>Checkout &#x2192;</strong> </button></a>
+    <br>
+    <br>
+    <div class="d-flex justify-content-around">
+        <h5><strong>Total Products: {{ data.total_products }} </strong> </h5> 
+        <h5><strong>Total Items: {{data.total_items}}</strong> </h5>
+        <h5><strong>Net Total : {{data.net_total}}</strong></h5>
+    </div>
+</div>
+
+<div class="contain mt-5">
+    <div class="cart-row">
+        <div style="flex:2;"> </div>
+        <div style="flex:3;"><strong>Name</strong> </div>
+        <div style="flex:3;"><strong>Price</strong> </div>
+        <div style="flex:3;"><strong>Quantity</strong> </div>
+        <div style="flex:3;"><strong>Total</strong> </div>
+        <div style="flex:3;"><strong>Action</strong> </div>
+
+    </div>
+    {% for object in cart %}
+    <div class="cart-row">
+     
+        <div style="flex:2;"> <img src="{{object.product.image.url}}" alt="" class="thumbnail"> </div>
+        <div style="flex:3;">{{object.product.name}}</div>
+        <div style="flex:3;">{{object.product.price}}</div>
+        <div style="flex:3; ">
+            <p class="quantity">{{object.no_of_items}}</p>
+            <div class="quantity">
+                <img src="{% static 'images\uparrow.png' %}" alt="uparrow" id="{{object.product.id}}" class="chg-quantity about-quantity" value="add">
+                <img src="{% static 'images\downarrow.png' %}" alt="downarrow" id="{{object.product.id}}" class="chg-quantity about-quantity" value="minus">
+            </div>
+        </div>
+        <div style="flex:3;">{{object.item_total}}</div>
+        <div style="flex:3;">
+            <button class="btn btn-sm btn-danger about-quantity" value="remove" id="{{object.product.id}}">Remove</button>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

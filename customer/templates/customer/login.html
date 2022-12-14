@@ -1,0 +1,29 @@
+{% extends "customer/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="contain p-2 mt-5" style="width: 25%; font-size: 15px;">
+  <form action="" method="POST" >
+    <h3 class="text-center alert alert-primary">Login</h3>
+    {% csrf_token %}
+    {% for x in form %}
+    <strong>{{x.label}}</strong><br><span> {{x}} </span> <br>
+    {% endfor %}
+
+    <!-- {{form.errors}}
+      {% if form.errors %}
+      <p>Your username and password didn't match. Please try again.</p>
+      {% endif %} -->
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    {% endif %}
+    <h3 class="text-center"><input type="submit" value="Login" class="btn btn-outline-primary"></h3>
+    <h6 class="text-center">Don't have a account? <a href="{% url 'signup' %}">SignUp</a></h6>
+
+
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "customer/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container" style="display: flex; flex-wrap: wrap;">
+    {% for data in form %}
+    <div class="box border border-dark border-5 rounded-3">
+        <img src="{{data.image.url}}" alt="">
+        <h2 class="ms-2" style="  white-space: nowrap;
+        overflow: hidden;">{{data.name}}</h2>
+        <div class="bottom">
+            <button class="btn btn-outline-dark ms-2 about-quantity" id="{{data.id}}" value="add">Add to Cart</button>
+            <h3 class="price">{{data.price}}</h3>
+        </div>
+    </div>
+    {% endfor %}    
+</div>
+
+{% endblock %}

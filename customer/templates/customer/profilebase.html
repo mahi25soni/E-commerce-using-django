@@ -1,0 +1,22 @@
+{% extends "customer/base.html" %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-2 text-center  alert alert-dark">
+            <div style="margin-top: 150px;">
+            <a href="{% url 'profile' %}"><button class="btn btn-warning mt-4">Profile</button></a> <br>
+            <a href="{% url 'buyer_history' %}"><button class="btn btn-warning mt-4">History</button></a> <br>
+            <a href="{% url 'logout' %}"><button class="btn btn-warning mt-4">LogOut</button></a>
+            </div>
+        </div>
+        {% block basecontent %}
+        {% endblock %}
+    </div>
+</div>
+
+
+{% endblock %}
