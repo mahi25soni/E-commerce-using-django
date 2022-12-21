@@ -6,7 +6,6 @@ but the feature that make this website a stand out is it’s seller feature. A s
 
 The buyer will see the products posted by different sellers. Then this site have list of function to do	 :-
 
-The buyer will see the products posted by different sellers. Then this site have list of function to do	 :-
 -	Add to cart – This will add items to your cart, and the number of items that your cart have can be seen over the cart icon in navigation bar.
 -	Cart page – This page will have the entire list of your items, you can increase or decrease number of items of a product. Or you can directly remove the product you don’t want. The price per product, per item, total price are all calculated and shown here. After assuring your cart you can move you checkout page.
 -	Checkout page – This is where you will enter your shipping address, and you will pay using the paypal payment integration.
