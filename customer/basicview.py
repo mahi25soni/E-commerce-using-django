@@ -49,6 +49,7 @@ def profile(request):
         name = Consumer.objects.get(username = request.user)
     except Consumer.DoesNotExist:
         name = None
+        
     if ( name!=None and name.is_seller==True):
         data = Product.objects.filter(consumer = user)
         return render(request , 'customer/sellerhistory.html', {'form':data})
